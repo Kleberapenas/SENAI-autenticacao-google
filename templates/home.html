@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="header">
+    <h1>🚀 Bem-vindo ao Meu Site!</h1>
+    <p>Faça login com sua conta Google para acessar o dashboard</p>
+</div>
+
+{% if user.is_authenticated %}
+    <div class="user-info">
+        <p>Olá, {{ user.get_full_name|default:user.username }}! 👋</p>
+        <p>Você já está logado.</p>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="{% url 'dashboard' %}" class="btn">Ver Dashboard</a>
+        <a href="{% url 'logout' %}" class="btn logout-btn">Sair</a>
+    </div>
+{% else %}
+    <div style="text-align: center;">
+        <p>Para acessar o dashboard, faça login com sua conta Google:</p>
+        <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn">
+            🔐 Entrar com Google
+        </a>
+    </div>
+{% endif %}
+{% endblock %}

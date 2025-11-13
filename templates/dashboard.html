@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="header">
+    <h1>📊 Dashboard</h1>
+    <p>Área restrita - somente usuários logados</p>
+</div>
+
+<div class="user-info">
+    <h3>Informações do Usuário:</h3>
+    <p><strong>Nome:</strong> {{ user.get_full_name|default:"Não informado" }}</p>
+    <p><strong>Email:</strong> {{ user.email|default:"Não informado" }}</p>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Último login:</strong> {{ user.last_login|date:"d/m/Y H:i" }}</p>
+</div>
+
+<div style="text-align: center; margin-top: 30px;">
+    <p>🎉 Parabéns! Você está autenticado com sucesso!</p>
+    <p>Aqui você pode adicionar conteúdo exclusivo para usuários logados.</p>
+
+    <div style="margin-top: 30px;">
+        <a href="{% url 'home' %}" class="btn">🏠 Voltar ao Início</a>
+        <a href="{% url 'logout' %}" class="btn logout-btn">🚪 Sair</a>
+    </div>
+</div>
+{% endblock %}
